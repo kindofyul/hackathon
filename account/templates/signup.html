@@ -1,4 +1,4 @@
-<form action = "{% url 'signup' %}" method = "POST">
+<form action = "{% url 'account:signup' %}" method = "POST">
     {% csrf_token %}
     이름: <input type="text" name="legalname"> <br/>
     번호: <input type="number" name="phone"> <br/>

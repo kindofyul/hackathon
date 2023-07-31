@@ -6,5 +6,5 @@ app_name = 'posting'
 
 urlpatterns = [
     path('create/', posting, name="posting"),
-    path('confirmation/', confirmation, name="confirmation"),  # name 추가
+    path('confirmation/', confirmation, name="confirmation"),  
 ]
