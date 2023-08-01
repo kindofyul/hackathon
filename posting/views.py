@@ -4,8 +4,10 @@ from django.urls import reverse
 import zipfile
 import os
 from django.core.files import File
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def posting(request):
     if request.method == 'POST':
         # POST 요청 처리 로직
@@ -22,7 +24,9 @@ def posting(request):
             return render(request, 'create.html', {'에러': '필수 항목을 모두 작성해주세요'})
         
         # Posting 객체 생성
-        posting = Posting.objects.create(title=title,
+        posting = Posting.objects.create(
+            writer=request.user,
+            title=title,
             description=description,
             example_picture=example_picture,
             example_description=example_description,

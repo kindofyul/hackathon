@@ -6,9 +6,11 @@ from django.core.files import File
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 class Posting(models.Model):
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='postings', blank=True, null=True)
     title = models.CharField(max_length=30)
     description = models.TextField(max_length=100)
     example_picture = models.ImageField(upload_to='example_pictures/', blank=True, null=True)
