@@ -16,7 +16,7 @@
         <p>안녕하세요, {{user.username}} 님! </p>
     {% else %}
         <a href="{% url 'account:commissionneedlogin' %}">의뢰하기</a>
-        <a href="{% url 'account:explore' %}">탐색하기</a>
+        <a href="{% url 'account:commissionneedlogin' %}">탐색하기</a>
         <a href="{% url 'account:login' %}">로그인</a>
         <a href="{% url 'account:signup' %}">회원가입</a>
     {% endif %}

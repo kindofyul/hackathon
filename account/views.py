@@ -14,7 +14,6 @@ def login(request):
     if request.method == 'POST':
         userid = request.POST['username']
         userpw = request.POST['password']
-
         user = auth.authenticate(request, username=userid, password=userpw)
 
         if user is not None:
@@ -32,9 +31,15 @@ def signup(request):
         return render(request, 'signup.html')
     
     else:
-        userid = request.POST['username']
-        userpw = request.POST['password']
-        new_user = User.objects.create_user(username=userid, password=userpw)
+        detail = UserDetail()
+        detail.legalname = request.POST['legalname']
+        detail.phone = request.POST['phone']
+        detail.address = request.POST['address']
+        detail.bankaccount = request.POST['bankaccount']
+        detail.userid = request.POST['username']
+        detail.userpw = request.POST['password']
+        detail.save()
+        new_user = User.objects.create_user(username=detail.userid, password=detail.userpw)
         auth.login(request, new_user)
         return redirect('account:home')
 

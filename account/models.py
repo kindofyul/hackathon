@@ -7,6 +7,9 @@ class UserDetail(models.Model):
     phone = models.IntegerField()
     address = models.TextField()
     bankaccount = models.TextField()
+    userid = models.CharField(max_length = 40, unique = True, null = False, default=legalname)
+    userpw = models.TextField(null = False, default = legalname)
+    point = models.IntegerField(default=0)
     
     def __str__(self):
-        return self.title
+        return self.userid
