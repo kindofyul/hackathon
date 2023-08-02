@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>홈</h1>
+    {% if user.is_authenticated %}
+        <a href="{% url 'posting:posting' %}">의뢰하기</a>
+        <a href="{% url 'account:explore' %}">탐색하기</a>
+        <a href = "{% url 'account:logout' %}">로그아웃</a>
+        <a href="{% url 'account:mypage' %}">마이페이지</a>
+        <p>안녕하세요, {{user.username}} 님! </p>
+    {% else %}
+        <a href="{% url 'account:commissionneedlogin' %}">의뢰하기</a>
+        <a href="{% url 'account:commissionneedlogin' %}">탐색하기</a>
+        <a href="{% url 'account:login' %}">로그인</a>
+        <a href="{% url 'account:signup' %}">회원가입</a>
+    {% endif %}
+
+    <h2>간단 설명: 필요성, 사용법</h2>
+    <h3>대체 텍스트 예시</h3>
+    <p>흰 옷과 검은 바지를 입은 여성 모델이 의자에 앉아 있다.</p>
+
+    <button id="popupButton">도움</button>
+    
+    <script type="text/javascript">
+    document.getElementById("popupButton").addEventListener("click", function() {
+        var popupUrl = "{% url 'account:popup_view' %}";
+        var popupWidth = 600;
+        var popupHeight = 400;
+        var left = (screen.width - popupWidth) / 2;
+        var top = (screen.height - popupHeight) / 2;
+        window.open(popupUrl, "팝업창", "width=" + popupWidth + ", height=" + popupHeight + ", left=" + left + ", top=" + top);});
+    </script>
+</body>
+</html>

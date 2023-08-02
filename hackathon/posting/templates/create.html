@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Project</title>
+</head>
+<body>
+    <h1>업무 의뢰하기</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>하단 양식을 채워 제출해주세요.</p>
+        <label for="title">제목:</label>
+        <input type="text" name="title" maxlength="30" required><br>
+
+        <label for="description">업무 간단 설명:</label>
+        <input type="text" name="description" maxlength="100" required><br>
+
+        <!-- 예시 작성 -->
+        <p>참고할 수 있는 대체 텍스트 예시를 올려주시면, 텍스트 작성에 큰 도움이 됩니다.</p>
+        <label for="example_picture">Example Picture:</label>
+        <input type="file" name="example_picture"><br>
+
+        <label for="example_description">Example Description:</label>
+        <input type="text" name="example_description" maxlength="100"><br>
+        
+        <!-- 사진 업로드 -->
+        <p>의뢰하고 싶은 사진을 압축하여 첨부해주세요.</p>
+        <label for="picture_zip">사진 첨부(Zip File):</label>
+        <input type="file" name="picture_zip" required><br>
+
+        <label for="quantity">사진 총 개수:
+        <input type="number" name="quantity" required> 장</label><br>
+
+        <label for="price">제공 리워드: 장당
+        <input type="number" name="price" required> 원</label><br>
+
+        <label for="date">마감 기한</label>
+        <input type="date" name="date" required><br>
+
+        <button type="submit">제출하기</button>
+    
+    </form>
+</body>
+</html>

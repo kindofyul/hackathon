@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation Page</title>
+</head>
+<body>
+    <h1>입금 안내</h1>
+    {% csrf_token %}
+    <p>총 금액은 다음과 같습니다: {{ total_amount }}원</p>
+    <p>위 금액을 하단 은행 계좌로 입금 부탁드립니다.</p>
+    <p>우리 1002259629267 (김*율)</p>
+    <p>입금 후 최대 24시간 이내로 요청하신 업무가 업로드됩니다. </p>
+    <a href="{% url 'account:home' %}"><button>확인했습니다</button>
+    </a>
+
+    
+</body>
+</html>

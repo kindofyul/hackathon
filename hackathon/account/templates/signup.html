@@ -1,0 +1,10 @@
+<form action = "{% url 'account:signup' %}" method = "POST">
+    {% csrf_token %}
+    이름: <input type="text" name="legalname"> <br/>
+    번호: <input type="number" name="phone"> <br/>
+    주소: <input type="text" name="address"> <br/>
+    계좌: <input type="text" name="bankaccount"> <br/>
+    ID: <input type="text" name="username"> <br/>
+    PW: <input type="password" name="password"> <br/>
+    <input type="submit" value="회원가입">
+</form>
