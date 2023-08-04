@@ -1,1 +1,21 @@
-<h1>마이페이지 HTML</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- head 부분 생략 -->
+</head>
+<body>
+    <h1>마이페이지</h1>
+    <h2>프로필 정보</h2>
+    <p>이름: {{ user_detail.legalname}}</p>
+    <p>아이디: {{ user_detail.userid }}</p>
+    <p>비밀번호: {{ user_detail.userpw }}</p>
+    <p>포인트: {{ user_detail.point }}</p>
+    <p>전화번호: {{ user_detail.phone }}</p>
+    <p>주소: {{ user_detail.address }}</p>
+    <p>은행 계좌: {{ user_detail.bankaccount }}</p>
+
+    <!-- 수정하기 버튼 추가 -->
+    <a href="{% url 'account:mypage_edit' %}"><button>수정하기</button></a>
+    
+</body>
+</html>

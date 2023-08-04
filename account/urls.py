@@ -15,4 +15,6 @@ urlpatterns = [
     path('mypage/', mypage, name="mypage"),
     path('popup/', popup_view, name='popup_view'),
     path('posting/', include('posting.urls', namespace='posting')),  # 'posting' 앱의 URL 패턴을 include 합니다.
+    path('mypage_edit/', mypage_edit, name='mypage_edit'),
+
 ]
