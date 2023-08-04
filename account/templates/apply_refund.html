@@ -1,0 +1,27 @@
+<!-- apply_refund.html -->
+
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags %}
+      <div class="{{ message.tags }}">
+        {% if message.tags == 'error' %}
+        <h1>환급 신청 실패</h1>
+        <h3>신청에 실패하였습니다</h3>
+        {{ message }}
+        <p>{{ user_detail.username }}님의 현재 포인트는 총 {{ user_detail.point }}점입니다.</p>
+        <button type="button" onclick="history.back()">뒤로가기</button>
+        {% else %}
+        <h1>환급 신청 완료</h1>
+        <h3>신청이 접수되었습니다</h3>
+        {{ message }}
+        <p>{{ user_detail.username }}님의 현재 포인트는 총 {{ user_detail.point }}점입니다.</p>
+        {% endif %}
+      </div>
+    {% else %}
+      {{ message }}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+<button onclick="window.close()">창 닫기</button>

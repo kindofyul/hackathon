@@ -7,8 +7,8 @@
     <h1>마이페이지</h1>
     <h2>프로필 정보</h2>
     <p>이름: {{ user_detail.legalname}}</p>
-    <p>아이디: {{ user_detail.userid }}</p>
-    <p>비밀번호: {{ user_detail.userpw }}</p>
+    <p>아이디: {{ user_detail.username }}</p>
+    <p>비밀번호: {{ user_detail.password }}</p>
     <p>포인트: {{ user_detail.point }}</p>
     <p>전화번호: {{ user_detail.phone }}</p>
     <p>주소: {{ user_detail.address }}</p>
@@ -16,6 +16,12 @@
 
     <!-- 수정하기 버튼 추가 -->
     <a href="{% url 'account:mypage_edit' %}"><button>수정하기</button></a>
+    <a href="{% url 'account:home' %}"><button>홈으로</button>
+    <a href="{% url 'account:my_postings' request.user.id %}"><button>나의 의뢰</button></a>
+    <a href="{% url 'account:refund_request' %}" target="_blank"><button>환급 신청하기</button></a>
+
+        
+
     
 </body>
 </html>

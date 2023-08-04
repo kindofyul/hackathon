@@ -1,0 +1,14 @@
+<!-- refund_request.html -->
+<h1>환급 신청 페이지</h1>
+<h3>신청 후 72H 내에 설정하신 계좌로 입금됩니다.</h3>
+
+<p>{{ user_detail.username }}님의 총 보유 포인트는 {{ user_detail.point }}점입니다.</p>
+<form method="post" action="{% url 'account:apply_refund' %}">
+  {% csrf_token %}
+  <p>환급 신청: <input type="number" name="refund" required> 포인트</p>
+  <p>(환급 예정 계좌: {{ user_detail.bankaccount }})</p>
+
+  <input type="submit" value="신청하기">
+</form>
+
+<a href="{% url 'account:mypage_edit' %}"><button>계좌 수정하기</button></a>
