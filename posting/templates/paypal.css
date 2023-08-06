@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5ff; /* 주된 색상으로 파랑(또는 하늘) 사용 */
+}
+
+/* 흰 색 배경의 div box 스타일 */
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    max-width: 600px;
+    margin: 100px auto; /* 페이지 내용을 수직 가운데로 정렬 */
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px; /* 헤더와 다음 요소 간격 조정 */
+}
+
+p {
+    text-align: center;
+    margin: 20px 0; /* 문단 간격 조정 */
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 30px; /* 링크와 상단 간격 조정 */
+}
+
+button {
+    background-color: #007bff; /* 버튼 배경 색상 */
+    color: #ffffff; /* 버튼 텍스트 색상 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3; /* 버튼 호버 상태 배경 색상 */
+}
