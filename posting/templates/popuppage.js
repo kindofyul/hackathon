@@ -1,7 +1,7 @@
 // 제출하기 버튼을 클릭했을 때의 동작
 document.getElementById("submitBtn").addEventListener("click", function() {
     // 팝업창으로 띄울 페이지의 URL
-    var confirmationPageURL = "선율팝업.html"; // 여기에 별도의 확인 페이지 URL을 입력해주세요.
+    var confirmationPageURL = "popup.html"; // 여기에 별도의 확인 페이지 URL을 입력해주세요.
   
     // 팝업 창의 크기와 위치를 지정
     var popupWidth = 400;
