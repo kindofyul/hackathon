@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5ff; /* 주된 색상으로 파랑(또는 하늘) 사용 */
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff; /* 폼 배경 색상 */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+p {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold; /* 폼 라벨 텍스트 굵게 */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc; /* 인풋 요소 테두리 스타일 */
+    border-radius: 5px;
+    box-sizing: border-box; /* 폭을 테두리까지 포함하여 계산 */
+    text-align: center; /* 인풋 요소 가운데 정렬 추가 */
+}
+
+textarea {
+    resize: vertical; /* 텍스트 영역의 높이를 수직으로 조절 가능하도록 */
+}
+
+input[type="file"] {
+    /* 원하는 스타일 적용 */
+}
+
+input[type="number"] {
+    width: 80px;
+}
+
+button[type="submit"] {
+    background-color: #007bff; /* 제출 버튼 배경 색상 */
+    color: #ffffff; /* 제출 버튼 텍스트 색상 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* 제출 버튼과 이전 폼 사이 간격 */
+    display: block; /* 제출 버튼을 블록 요소로 표시하여 가로 가득으로 표시 */
+    margin-left: auto; /* 가운데 정렬을 위해 왼쪽 마진과 오른쪽 마진을 자동으로 조정 */
+    margin-right: auto;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* 제출 버튼 호버 상태 배경 색상 */
+}
+
+.picex {
+    font-size: 12px; /* "의뢰하고 싶은 사진을 압축하여 첨부해주세요." 텍스트 크기 조정 */
+    text-align: left; /* 왼쪽 정렬 */
+    margin-left: 12px; /* 텍스트와 파일 input 사이 간격 조정 */
+    color: #888888; /* 글씨 연한 색감 */
+}
+
+/* 이미지 배치 예시 */
+.image-example {
+    width: 100px;
+    height: 100px;
+    background-color: #ffcc00; /* 이미지 영역 색상 */
+    border-radius: 50%; /* 원형 이미지 */
+    position: absolute;
+    top: 80px; /* 원하는 위치 조정 */
+    left: 50%; /* 원하는 위치 조정 */
+    transform: translateX(-50%); /* 가운데 정렬 */
+    z-index: 1; /* 다른 요소 위에 배치 */
+}
