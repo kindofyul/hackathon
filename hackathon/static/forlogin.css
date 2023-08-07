@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #605dc26e;
+    background: linear-gradient(45deg, #d2d1f2d2, #ff005128, #d2d1f2d2, #ff005128);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 50px; /* 위아래 간격 늘리기 */
+}
+
+.container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center; /* 아이콘을 수직으로 가운데 정렬 */
+}
+
+.container h2 span {
+    display: inline-block; /* 아이콘과 제목이 옆으로 배치되는 것을 방지 */
+}
+
+.login-icon {
+    width: 70px; /* 아이콘 크기 */
+    height: 70px; /* 아이콘 크기 */
+    margin-bottom: 10px; /* 아이콘과 제목 사이 간격 */
+    display: block; /* 아이콘을 block 요소로 설정 */
+}
+
+.container input {
+    width: 100%;
+    padding: 15px; /* 간격 늘리기 */
+    margin: 20px 0; /* 아이디와 비밀번호 입력란 사이 간격 늘리기 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.forgot-password {
+    color: #605dc2c5;
+    margin-top: 10px; /* 비밀번호 입력란과 "비밀번호를 잊으셨나요?" 사이 간격 늘리기 */
+    text-align: right; /* 우측 정렬 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-size: 14px; /* 글씨 크기 조정 */
+}
+
+.forgot-password:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+}
+
+.container input[type="submit"] {
+    background-color: #413ce2e7;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px; /* 간격 늘리기 */
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px; /* 비밀번호 입력란과 로그인 버튼 사이 간격 늘리기 */
+}
+
+.container input[type="submit"]:hover {
+    background-color: #413ce2;
+}
