@@ -14,7 +14,7 @@ def home(request):
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'loginpage_heesu.html')
+        return render(request, 'templates/loginpage_heesu.html')
     
     if request.method == 'POST':
         username = request.POST['username']
@@ -25,7 +25,7 @@ def login(request):
             auth.login(request, user)
             return redirect('account:home')
         else:
-            return render(request, 'loginpage_heesu.html')
+            return render(request, 'templates/loginpage_heesu.html')
         
 def logout(request):
     auth.logout(request)
@@ -69,7 +69,7 @@ def commission(request):
     return posting(request)
     
 def commissionneedlogin(request):
-    return render(request, 'loginpage_heesu.html')
+    return render(request, 'templates/loginpage_heesu.html')
 
 def popup_view(request):
     return render(request, 'kakaotalk.html')
