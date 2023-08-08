@@ -2,8 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #605dc26e;
-    background: linear-gradient(45deg, #d2d1f2d2, #ff005128, #d2d1f2d2, #ff005128);
+    background-color: #4d65ffd7;
+    background: linear-gradient(45deg, #4d65ffaa, #ff3c004e, #4d65ffaa, #ff3c004e);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
@@ -47,8 +47,8 @@ body {
 }
 
 .login-icon {
-    width: 70px; /* 아이콘 크기 */
-    height: 70px; /* 아이콘 크기 */
+    width: 90px; /* 아이콘 크기 */
+    height: 90px; /* 아이콘 크기 */
     margin-bottom: 10px; /* 아이콘과 제목 사이 간격 */
     display: block; /* 아이콘을 block 요소로 설정 */
 }
@@ -76,7 +76,7 @@ body {
 }
 
 .container input[type="submit"] {
-    background-color: #413ce2e7;
+    background-color: #4d65ff;
     color: #ffffff;
     border: none;
     border-radius: 5px;
