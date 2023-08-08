@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signIn</title>
-    <link rel="stylesheet" href="forlogin.css">
+    <link rel="stylesheet" href="{% static 'forlogin.css' %}">
 </head>
 <body>
     <div class="container">
-        <img src="alttext_icon.png" alt="Login Icon" class="login-icon">
+        <img src="{% static 'alttext_icon.png' %}" alt="Login Icon" class="login-icon">
         <h2>
             <span>로그인</span>
         </h2>
