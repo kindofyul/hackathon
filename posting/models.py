@@ -3,10 +3,12 @@ import os
 import zipfile
 import shutil
 from django.core.files import File
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.conf import settings
 from django.contrib.auth.models import User
+from datetime import date, timedelta
+from django.core.validators import MinValueValidator
 
 
 class Posting(models.Model):
@@ -19,6 +21,17 @@ class Posting(models.Model):
     quantity = models.PositiveIntegerField(blank=False)
     price = models.PositiveIntegerField(blank=False)
     date = models.DateField()
+    remaining_count = models.PositiveIntegerField(default = 0, blank=False, null=False, validators=[MinValueValidator(0)])
+
+    def get_dday(self):
+        today = date.today()
+        return (self.date - today).days
+
+    def save(self, *args, **kwargs):
+        # 새 레코드인 경우 remaining_count를 quantity로 설정
+        if not self.id and self.remaining_count == 0:
+            self.remaining_count = self.quantity
+        super(Posting, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -27,7 +40,11 @@ class Posting(models.Model):
 class Image(models.Model):
     posting = models.ForeignKey(Posting, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='posted_images/', null=True, blank=True)
-
+    description = models.CharField(max_length=200, blank=True, null=True)
+    
+    def number_of_images(self):
+        return self.posting.images.count()
+    
     def __str__(self):
         return f"{self.posting.title} - Image {self.id}"
 

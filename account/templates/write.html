@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ posting.title }}</title>
+</head>
+<body>
+    <h1>아래 이미지에 해당하는 대체 텍스트를 작성해주세요.</h1>
+    <img src="{{ image.image.url }}" alt="{{ image.description }}" width="300" height="200">
+    <form method="post" action="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index %}">
+        {% csrf_token %}
+        <input type="hidden" name="image_id" value="{{ image.id }}">
+        <textarea name="description" placeholder="설명을 입력하세요">{% if image.description %}{{ image.description }}{% endif %}</textarea>
+        <button type="submit" name="action" class="btn btn-primary" value="save">저장하기</button>
+    </form>
+    {% with num_images=posting.remaining_count %}
+        {% if image_index < num_images and image_index != num_images|add:"-1" %}
+            <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="btn btn-secondary">넘어가기</a>
+        {% endif %}
+    {% endwith %}    
+    <a href="{% url 'account:end' posting_id=posting.pk image_index=image_index %}">끝내기</a>
+
+    <p>다음 이미지로 넘어가기 전에는 자유로운 수정이 가능합니다.</p>
+    <p>단, 다음 이미지로 넘어간 후에는 수정할 수 없습니다.</p>
+    <p>성의 없는 대체 텍스트 작성 시 확인 후 리워드가 회수됩니다.</p>
+</body>
+</html>

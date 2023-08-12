@@ -1,0 +1,23 @@
+<h1>{{posting.title}}</h1>
+<div>
+업무 설명: {{posting.description}}
+<br>
+예시:
+{% if posting.example_picture %}
+    <img src="{{ posting.example_picture.url }}" alt="Example Picture" width="300" height="200">
+{% endif %}
+{{posting.example_description}}
+<br>
+리워드: {{posting.price}}
+<br>
+남은 장수: {{posting.remaining_count}}
+<br>
+D-{{posting.get_dday}}
+</div>
+<br>
+
+{% if first_image_index is not None %}
+    <a href="{% url 'account:participate_page_url' pk=posting.pk %}" class="btn btn-primary">참여하기</a>
+{% endif %}
+
+<a href="{% url 'account:explore' %}">뒤로가기</a>

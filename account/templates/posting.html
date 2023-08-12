@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ posting.title }}</title>
+    <style>
+        .stored_image {
+            max-width: 70px;
+            max-height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{posting.title}}</h1>
+    <div>
+    업무 설명: {{posting.description}}
+    <br>
+    결과:
+    {% if my_postings %}
+        <ul>
+            {% for posting in my_postings %}
+                <a href="{% url 'account:posting' posting.id %}">{{ posting.title }}</a>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>작성한 포스팅이 없습니다.</p>
+    {% endif %}
+  
+</body>
+</html>

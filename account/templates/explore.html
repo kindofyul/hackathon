@@ -1,1 +1,31 @@
-<h1>탐색하기 HTML</h1>
+<html>
+    <style>
+        .preview-image {
+            max-width: 70px;
+            max-height: 70px;
+        }
+
+        .closed-message {
+            color: red;
+        }
+
+    </style>
+    <body>
+        {% for posting in postings %}
+            <div class = "post-item">
+                <h3>{{posting.title}}</h3>
+                <img src="{{ posting.images.first.image.url }}" class="preview-image">
+                리워드 {{posting.price}}원/장
+                남은 업무 {{posting.remaining_count}}장
+                D-{{posting.get_dday}}
+                <br>
+                {% if posting.remaining_count > 0 %}
+                    <a href="{% url 'account:posting_detail' pk=posting.pk %}" class="btn btn-primary">더보기</a>
+                {% else %}
+                    <span class="closed-message">마감</span>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+    </body>
+</html>

@@ -17,7 +17,7 @@
     <!-- 수정하기 버튼 추가 -->
     <a href="{% url 'account:mypage_edit' %}"><button>수정하기</button></a>
     <a href="{% url 'account:home' %}"><button>홈으로</button>
-    <a href="{% url 'account:my_postings' request.user.id %}"><button>나의 의뢰</button></a>
+    <a href="{% url 'account:my_postings' %}"><button>나의 의뢰</button></a>
     <a href="{% url 'account:refund_request' %}" target="_blank"><button>환급 신청하기</button></a>
 
         
