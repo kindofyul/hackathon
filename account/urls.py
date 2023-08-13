@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from account.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'account'
 
@@ -26,3 +28,6 @@ urlpatterns = [
     path('post/<int:posting_id>/write/<int:image_index>/', ImageWriteView.as_view(), name='write_page_url'),
     path('post/<int:pk>/participate/', detail_view_participate, name='participate_page_url'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

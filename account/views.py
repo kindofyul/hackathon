@@ -5,16 +5,18 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from posting.views import *
 from posting.models import *
-from django.http import HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.views.generic import DetailView, View
-
+from django.core.serializers import serialize
+import csv
+import openpyxl
 
 def home(request):
     return render(request,'home.html')
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'loginpage_heesu.html')
     
     if request.method == 'POST':
         username = request.POST['username']
@@ -25,7 +27,7 @@ def login(request):
             auth.login(request, user)
             return redirect('account:home')
         else:
-            return render(request, 'login.html')
+            return render(request, 'loginpage_heesu.html')
         
 def logout(request):
     auth.logout(request)
@@ -128,6 +130,25 @@ def my_postings(request):
 def view_posting(request, posting_id):
     posting = get_object_or_404(Posting, id=posting_id)
     images = posting.images.all()
+
+    if 'export' in request.POST:
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="image_info.xlsx"'
+
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        worksheet.title = 'Image Info'
+
+        worksheet.append(['이미지명', '이미지 해설'])
+
+        for image in images[:posting.quantity]:
+            description = image.description if image.description else "아직 입력되지 않았습니다"
+            worksheet.append([image.image.name, description])
+
+        workbook.save(response)
+
+        return response
+
     return render(request, 'posting.html', {'posting':posting, 'images':images})
 
 def refund_request(request):
@@ -176,11 +197,14 @@ def admin_notifications(request):
 def detail_view_participate(request, pk):
     posting = get_object_or_404(Posting, pk=pk)
     images_without_description = posting.images.filter(description__isnull=True)
-    
+    image_ids = list(images_without_description.values_list('id', flat=True))
+
     if images_without_description.exists():
         image_index = 0
         request.session['total_images'] = 0  # 초기화
         request.session['total_reward'] = 0  # 초기화
+        request.session['image_ids'] = image_ids
+        request.session['listlength'] = len(image_ids)
         return redirect('account:write_page_url', posting_id=posting.pk, image_index=image_index)
     else:
         return redirect('account:end', posting_id=posting.pk, image_index=image_index)
@@ -201,28 +225,54 @@ class PostingDetailView(DetailView):
 class ImageWriteView(View):
     template_name = 'write.html'
 
+    def get_image_from_session(self, image_id):
+        return Image.objects.get(id=image_id)
+    
     def get(self, request, posting_id, image_index):
         posting = get_object_or_404(Posting, pk=posting_id)
-        images = posting.images.filter(description__isnull=True)
-        if image_index < posting.remaining_count:
-            image = images[image_index]
-            image_index = images.filter(id__lte=image.id).count() - 1
-            return render(request, self.template_name, {'posting': posting, 'image': image, 'image_index': image_index})
-        else:
-            return redirect('account:end', posting_id=posting.pk, image_index=image_index)
-
-    def post(self, request, posting_id, image_index):
-        posting = get_object_or_404(Posting, pk=posting_id)
-        images_without_description = posting.images.filter(description__isnull=True)
+        image_ids = request.session.get('image_ids', [])
+        listlength = request.session.get('listlength')
         remaining_count = posting.remaining_count
 
-        if image_index < len(images_without_description):
-            request.session['image_index'] = image_index
-            image = images_without_description[image_index]
-            description = request.POST.get('description')
+        if image_index < len(image_ids):
+            image_id = request.session.get('image_ids', [])[image_index]
+            image = self.get_image_from_session(image_id)
+        else:
+            return redirect('account:end', posting_id=posting.pk, image_index=image_index)
+        
+        context = {
+            'posting': posting,
+            'image': image,
+            'image_index': image_index,
+            'listlength':listlength,
+            'remaining_count':remaining_count,
+        }
+        return render(request, self.template_name, context)
+    
+    def post(self, request, posting_id, image_index):
+        posting = get_object_or_404(Posting, pk=posting_id)
+        image_ids = request.session.get('image_ids', [])
+        image_id = request.session.get('image_ids', [])[image_index]
+        image = self.get_image_from_session(image_id)
+        listlength = request.session.get('listlength')
+        samepage = True
+        remaining_count = posting.remaining_count
+
+        context = {
+            'posting': posting,
+            'image': image,
+            'image_index': image_index,
+            'listlength':listlength,
+            'remaining_count':remaining_count,
+        }
+
+        description = request.POST.get('description')
+
+        if 'save_button' in request.POST:
             if description:
                 image.description = description
                 image.save()
+                context['button_disabled'] = True  # 버튼 비활성화 변수 추가
 
                 # remaining_count 하나씩 차감하기 
                 remaining_count -= 1
@@ -237,26 +287,24 @@ class ImageWriteView(View):
                 request.session['total_images'] = request.session.get('total_images', 0) + 1
                 reward_per_image = posting.price
                 request.session['total_reward'] = request.session.get('total_reward', 0) + reward_per_image
+
+            return render(request, self.template_name, context)
+        
+        if 'next_button' in request.POST:
+            next_image_index = image_index + 1
+            if next_image_index < len(image_ids):
+                return redirect('account:write_page_url', posting_id=posting.pk, image_index=next_image_index)
+            else:
+                return redirect('account:end', posting_id=posting.pk, image_index=image_index)
             
-            if 'save_button' in request.POST:
-                return render(request, self.template_name, {'posting': posting, 'image': image, 'image_index': image_index})
-            
-            if 'next_button' in request.POST:  # '넘어가기' 버튼이 눌렸을 때
-                image_index += 1
-                while image_index < len(images_without_description) and images_without_description[image_index].description:
-                    image_index += 1
-                if image_index < len(images_without_description):
-                    # 이미지 인덱스를 다음 설명이 없는 이미지의 인덱스로 업데이트
-                    return redirect('account:write_page_url', posting_id=posting.pk, image_index=image_index)
-                else:
-                    # 이미지 인덱스가 이미지 개수를 초과하면 write.html로 리다이렉트
-                    return render(request, self.template_name, {'posting': posting, 'image': image, 'image_index': image_index})
-            
-        return render(request, self.template_name, {'posting': posting, 'image': image, 'image_index': image_index, 'images_without_description':images_without_description})
-    
+        if 'end_button' in request.POST:     
+            return redirect('account:end', posting_id=posting.pk, image_index=image_index)
+        
+        return redirect('account:end', posting_id=posting.pk, image_index=image_index)
+
 def end(request, posting_id, image_index):
     posting = get_object_or_404(Posting, id=posting_id)
-    
+
     #UserDetail에 리워드 저장
     user_detail, created = UserDetail.objects.get_or_create(user=request.user)
 
@@ -278,5 +326,5 @@ def end(request, posting_id, image_index):
         'posting_id': posting_id,
         'image_index': image_index,
     }
-
+    request.session.pop('image_ids', None)
     return render(request,'end.html',context)

@@ -10,17 +10,19 @@
         {% csrf_token %}
         <input type="hidden" name="image_id" value="{{ image.id }}">
         <textarea name="description" placeholder="설명을 입력하세요">{% if image.description %}{{ image.description }}{% endif %}</textarea>
-        <button type="submit" name="action" class="btn btn-primary" value="save">저장하기</button>
+        <button type="submit" name="save_button" class="btn btn-primary" value="save" {% if button_disabled %}disabled{% endif %}>저장하기</button>
     </form>
-    {% with num_images=posting.remaining_count %}
-        {% if image_index < num_images and image_index != num_images|add:"-1" %}
-            <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="btn btn-secondary">넘어가기</a>
+
+    {% with num_images=remaining_count %}
+        {% if image_index < num_images %}
+            <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="btn btn-secondary" name="next_button">넘어가기</a>
         {% endif %}
     {% endwith %}    
-    <a href="{% url 'account:end' posting_id=posting.pk image_index=image_index %}">끝내기</a>
+    <a href="{% url 'account:end' posting_id=posting.pk image_index=image_index %}" name="end_button">끝내기</a>
 
-    <p>다음 이미지로 넘어가기 전에는 자유로운 수정이 가능합니다.</p>
-    <p>단, 다음 이미지로 넘어간 후에는 수정할 수 없습니다.</p>
+
+    <p>저장하기를 클릭한 후에는 수정할 수 없습니다.</p>
+    <p>설명을 입력하지 않아도 다음 이미지로 넘어갈 수 있습니다.</p>
     <p>성의 없는 대체 텍스트 작성 시 확인 후 리워드가 회수됩니다.</p>
 </body>
 </html>

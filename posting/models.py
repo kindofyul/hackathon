@@ -41,6 +41,7 @@ class Image(models.Model):
     posting = models.ForeignKey(Posting, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='posted_images/', null=True, blank=True)
     description = models.CharField(max_length=200, blank=True, null=True)
+    saved_description = models.BooleanField(default=False)
     
     def number_of_images(self):
         return self.posting.images.count()

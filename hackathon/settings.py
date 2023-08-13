@@ -128,3 +128,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# 세션 엔진 설정
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# 세션 쿠키 보안 설정 (운영 환경에서는 True로 설정하는 것이 좋습니다)
+SESSION_COOKIE_SECURE = False
+
+# 세션 유효 시간 설정 (초 단위)
+SESSION_COOKIE_AGE = 3600  # 1시간
+
+# 세션 브라우저 종료시 만료 여부 설정
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
