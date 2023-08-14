@@ -204,7 +204,7 @@ def detail_view_participate(request, pk):
         request.session['total_images'] = 0  # 초기화
         request.session['total_reward'] = 0  # 초기화
         request.session['image_ids'] = image_ids
-        request.session['listlength'] = len(image_ids)
+        request.session['listlength'] = posting.remaining_count
         return redirect('account:write_page_url', posting_id=posting.pk, image_index=image_index)
     else:
         return redirect('account:end', posting_id=posting.pk, image_index=image_index)
@@ -232,7 +232,6 @@ class ImageWriteView(View):
         posting = get_object_or_404(Posting, pk=posting_id)
         image_ids = request.session.get('image_ids', [])
         listlength = request.session.get('listlength')
-        remaining_count = posting.remaining_count
 
         if image_index < len(image_ids):
             image_id = request.session.get('image_ids', [])[image_index]
@@ -245,7 +244,6 @@ class ImageWriteView(View):
             'image': image,
             'image_index': image_index,
             'listlength':listlength,
-            'remaining_count':remaining_count,
         }
         return render(request, self.template_name, context)
     
@@ -255,7 +253,6 @@ class ImageWriteView(View):
         image_id = request.session.get('image_ids', [])[image_index]
         image = self.get_image_from_session(image_id)
         listlength = request.session.get('listlength')
-        samepage = True
         remaining_count = posting.remaining_count
 
         context = {
@@ -263,7 +260,6 @@ class ImageWriteView(View):
             'image': image,
             'image_index': image_index,
             'listlength':listlength,
-            'remaining_count':remaining_count,
         }
 
         description = request.POST.get('description')
@@ -304,7 +300,7 @@ class ImageWriteView(View):
 
 def end(request, posting_id, image_index):
     posting = get_object_or_404(Posting, id=posting_id)
-
+    
     #UserDetail에 리워드 저장
     user_detail, created = UserDetail.objects.get_or_create(user=request.user)
 
@@ -318,6 +314,7 @@ def end(request, posting_id, image_index):
             request.session['total_images'] = 0
             request.session['total_reward'] = 0
             request.session['image_index'] = 0
+            request.session['listlength'] = posting.remaining_count
             return redirect('account:explore')
         
     context = {

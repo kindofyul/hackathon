@@ -13,8 +13,8 @@
         <button type="submit" name="save_button" class="btn btn-primary" value="save" {% if button_disabled %}disabled{% endif %}>저장하기</button>
     </form>
 
-    {% with num_images=remaining_count %}
-        {% if image_index < num_images %}
+    {% with num_images=listlength %}
+        {% if image_index < num_images and image_index != num_images|add:"-1" %}
             <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="btn btn-secondary" name="next_button">넘어가기</a>
         {% endif %}
     {% endwith %}    
