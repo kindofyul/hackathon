@@ -2,8 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #605dc26e;
-    background: linear-gradient(45deg, #d2d1f2d2, #ff005128, #d2d1f2d2, #ff005128);
+    background-color: #4d65ffe7;
+    background: linear-gradient(45deg, #4d65ffac, #ff3c004e, #4d65ffac, #ff3c004e);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
@@ -76,7 +76,7 @@ body {
 }
 
 .container input[type="submit"] {
-    background-color: #413ce2e7;
+    background-color: #4d65ffea;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -87,5 +87,5 @@ body {
 }
 
 .container input[type="submit"]:hover {
-    background-color: #413ce2;
+    background-color: #4d65ff;
 }
