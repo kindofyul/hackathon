@@ -12,7 +12,7 @@ import csv
 import openpyxl
 
 def home(request):
-    return render(request,'home.html')
+    return render(request,'index.html')
 
 def login(request):
     if request.method == 'GET':
@@ -70,7 +70,7 @@ def explore(request):
             'price':posting.price, 
             'remaining_count': posting.remaining_count,
         })
-    return render(request,'explore.html', {'postings':postings, 'posting_data': posting_data})
+    return render(request,'mission-acting.html', {'postings':postings, 'posting_data': posting_data})
 
 def mypage(request):
     return render(request,'mypage.html')
@@ -80,6 +80,9 @@ def commission(request):
     
 def commissionneedlogin(request):
     return render(request, 'commissionneedlogin.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 
 def popup_view(request):
     return render(request, 'kakaotalk.html')
@@ -157,7 +160,7 @@ def refund_request(request):
     
     user_detail = request.user.userdetail  # 유저의 UserDetail 객체 가져오기
 
-    return render(request, 'refund_request.html', {'user_detail': user_detail})
+    return render(request, 'refund-1.html', {'user_detail': user_detail})
 
 def apply_refund(request):
     if not request.user.is_authenticated:
@@ -184,7 +187,7 @@ def apply_refund(request):
             messages.error(request, '포인트가 부족하여 환급 신청을 완료할 수 없습니다.')
 
     # user_detail을 함께 템플릿에 전달
-    return render(request, 'apply_refund.html', {'user_detail': user_detail})
+    return render(request, 'refund-2.html', {'user_detail': user_detail})
 
 @login_required
 def admin_notifications(request):
@@ -211,7 +214,7 @@ def detail_view_participate(request, pk):
     
 class PostingDetailView(DetailView):
     model = Posting
-    template_name = 'detail.html'
+    template_name = 'mission-acting-example.html'
     context_object_name = 'posting'
 
     def get_context_data(self, **kwargs):
@@ -223,7 +226,7 @@ class PostingDetailView(DetailView):
         return context
 
 class ImageWriteView(View):
-    template_name = 'write.html'
+    template_name = 'mission-acting-writing-1.html'
 
     def get_image_from_session(self, image_id):
         return Image.objects.get(id=image_id)
@@ -324,4 +327,4 @@ def end(request, posting_id, image_index):
         'image_index': image_index,
     }
     request.session.pop('image_ids', None)
-    return render(request,'end.html',context)
+    return render(request,'mission-acting-finish.html',context)

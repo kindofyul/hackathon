@@ -21,7 +21,7 @@ def posting(request):
         date = request.POST.get('date')
 
         if not title or not description or not quantity or not price or not date or not picture_zip:
-            return render(request, 'create.html', {'에러': '필수 항목을 모두 작성해주세요'})
+            return render(request, 'task_commsion.html', {'에러': '필수 항목을 모두 작성해주세요'})
         
         # Posting 객체 생성
         posting = Posting.objects.create(
@@ -41,7 +41,7 @@ def posting(request):
 
         # confirmation.html로 이동, posting_id와 total_amount 전달
         return confirmation(request, posting_id=posting.id, total_amount=total_amount)
-    return render(request, 'create.html')
+    return render(request, 'task_commsion.html')
 
 
 def confirmation(request, posting_id, total_amount):
@@ -54,4 +54,4 @@ def confirmation(request, posting_id, total_amount):
         price = int(request.POST.get('price', 0))
         total_amount = quantity * price
 
-    return render(request, 'confirmation.html', {'total_amount': total_amount})
+    return render(request, 'popup.html', {'total_amount': total_amount})

@@ -4,6 +4,6 @@
 <br>
 <form method="post" action="{% url 'account:end' posting_id=posting_id image_index=image_index %}">
     {% csrf_token %}
-    <button type="submit" name="action" value="complete">종료하기</button>
+    <button type="submit" name="action" value="complete" class="button button-2 distance w-button">종료하기</button>
 </form>
 <a href="{% url 'account:write_page_url' posting_id=posting_id image_index=image_index %}">돌아가기</a>
