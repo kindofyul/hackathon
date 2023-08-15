@@ -37,16 +37,29 @@
         <div class="nav_container">
           <a href="https://www.finsweet.com/" target="_blank" class="nav_logo-link w-nav-brand"><img src="{% static 'images/로고_black.png' %}" loading="lazy" alt="" class="nav_logo"></a>
           <nav role="navigation" class="nav_menu-wrapper w-nav-menu">
-            <div class="nav_link-wrapper">
-              <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
-              <a href="{% url 'account:my_postings' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
-              <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
-              <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
-            </div>
-            <div class="nav_button-wrapper">
-              <a href="refund-1.html" class="nav_button nav_button-1 w-button">로그인</a>
-              <a href="{% url 'account:signup' %}" class="nav_button w-button">회원가입</a>
-            </div>
+            {% if user.is_authenticated %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'account:my_postings' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:logout' %}" class="nav_button nav_button-1 w-button">로그아웃</a>
+                <a href="{% url 'account:mypage' %}" class="nav_button w-button">마이페이지</a>
+              </div>
+            {% else %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'account:my_postings' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:loginpage_heesu' %}" class="nav_button nav_button-1 w-button">로그인</a>
+                <a href="{% url 'account:signup' %}" class="nav_button w-button">회원가입</a>
+              </div>
+            {% endif %}
           </nav>
           <div class="nav_menu-button w-nav-button">
             <div class="nav_menu-button-icon w-embed"><svg height="100%" viewbox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
