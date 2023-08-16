@@ -248,7 +248,7 @@ margin: 0rem !important;
                             {% for image in posting.images.all %}
                                 {% if forloop.counter <= posting.quantity %}
                                     <li class="image-item">
-                                        <img src="{{ image.image.url }}" class="stored-image">
+                                        <img src="{{ image.image.url }}" class="image-2">
                                         <p class="image-description">{% if image.description %}{{ image.description }}{% else %}아직 입력되지 않았습니다{% endif %}</p>
                                     </li>
                                 {% endif %}
