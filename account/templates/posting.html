@@ -194,15 +194,11 @@ margin: 0rem !important;
   padding-right: 0rem !important;
   padding-left: 0rem !important;
 }
-form {
-  background-color: none;
-}
 
 button[name="export"] {
   background-color: #4d65ff;
   border-radius: 15px;
   color: white;
-  margin-top: 30px;
   padding: 30px 20px;
   float:right;
 }
@@ -213,16 +209,29 @@ button[name="export"] {
         <div class="nav_container">
           <a href="https://www.finsweet.com/" target="_blank" class="nav_logo-link w-nav-brand"><img src="{% static 'images/로고_black.png' %}" loading="lazy" alt="" class="nav_logo"></a>
           <nav role="navigation" class="nav_menu-wrapper w-nav-menu">
-            <div class="nav_link-wrapper">
-              <a href="index.html" class="nav_link w-nav-link">Home</a>
-              <a href="product.html" class="nav_link w-nav-link">작업 의뢰하기</a>
-              <a href="mission-acting.html" aria-current="page" class="nav_link w-nav-link w--current">작업 수행하기</a>
-              <a href="contact.html" class="nav_link w-nav-link">Contact</a>
-            </div>
-            <div class="nav_button-wrapper">
-              <a href="refund-1.html" class="nav_button nav_button-1 w-button">로그아웃</a>
-              <a href="#" class="nav_button w-button">마이페이지</a>
-            </div>
+            {% if user.is_authenticated %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:logout' %}" class="nav_button nav_button-1 w-button">로그아웃</a>
+                <a href="{% url 'account:mypage' %}" class="nav_button w-button">마이페이지</a>
+              </div>
+            {% else %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:login' %}" class="nav_button nav_button-1 w-button">로그인</a>
+                <a href="{% url 'account:signup' %}" class="nav_button w-button">회원가입</a>
+              </div>
+            {% endif %}
           </nav>
           <div class="nav_menu-button w-nav-button">
             <div class="nav_menu-button-icon w-embed"><svg height="100%" viewbox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -308,13 +317,8 @@ button[name="export"] {
                   <div class="footer_links-col">
                     <h4 class="footer_title">서비스</h4>
                     <div class="padding-bottom padding-xsmall"></div>
-                    <a href="product.html" class="footer_link">작업 의뢰하기</a>
+                    <a href="{% url 'posting:posting' %}" class="footer_link">작업 의뢰하기</a>
                     <a href="pricing.html" class="footer_link">작업 수행하기</a>
-                  </div>
-                  <div class="footer_links-col">
-                    <h4 class="footer_title">회사</h4>
-                    <div class="padding-bottom padding-xsmall"></div>
-                    <a href="privacy-policy.html" class="footer_link">브랜드 스토리</a>
                   </div>
                   <div class="footer_links-col">
                     <h4 class="footer_title">Reach Us</h4>
