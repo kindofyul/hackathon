@@ -36,16 +36,29 @@
         <div class="nav_container">
           <a href="https://www.finsweet.com/" target="_blank" class="nav_logo-link w-nav-brand"><img src="{% static 'images/로고_black.png' %}" loading="lazy" alt="" class="nav_logo"></a>
           <nav role="navigation" class="nav_menu-wrapper w-nav-menu">
-            <div class="nav_link-wrapper">
-              <a href="index.html" class="nav_link w-nav-link">Home</a>
-              <a href="product.html" class="nav_link w-nav-link">작업 의뢰하기</a>
-              <a href="mission-acting.html" class="nav_link w-nav-link">작업 수행하기</a>
-              <a href="contact.html" class="nav_link w-nav-link">Contact</a>
-            </div>
-            <div class="nav_button-wrapper">
-              <a href="refund-1.html" class="nav_button nav_button-1 w-button">로그인</a>
-              <a href="#" class="nav_button w-button">회원가입</a>
-            </div>
+            {% if user.is_authenticated %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:logout' %}" class="nav_button nav_button-1 w-button">로그아웃</a>
+                <a href="{% url 'account:mypage' %}" class="nav_button w-button">마이페이지</a>
+              </div>
+            {% else %}
+              <div class="nav_link-wrapper">
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
+              </div>
+              <div class="nav_button-wrapper">
+                <a href="{% url 'account:login' %}" class="nav_button nav_button-1 w-button">로그인</a>
+                <a href="{% url 'account:signup' %}" class="nav_button w-button">회원가입</a>
+              </div>
+            {% endif %}
           </nav>
           <div class="nav_menu-button w-nav-button">
             <div class="nav_menu-button-icon w-embed"><svg height="100%" viewbox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +121,7 @@
                   <div class="padding-bottom padding-small"></div>
                 </div>
                 <div class="w-layout-grid team_person-wrapper">
-                  <div class="team_item"><a href="my_page_heesu.html"><img src="{% static 'images/user00.png' %}" loading="lazy" alt="프로필 관련 아이콘" class="team_image"></a>
+                  <div class="team_item"><a href="{% url 'account:mypage' %}"><img src="{% static 'images/user00.png' %}" loading="lazy" alt="프로필 관련 아이콘" class="team_image"></a>
                     <div class="text-color-blue">Profile Information</div>
                     <div class="padding-bottom padding-xxsmall"></div>
                     <h3 class="heading-style-h4">프로필 정보</h3>
@@ -116,7 +129,7 @@
                     <div class="w-layout-grid team_socials">
                     </div>
                   </div>
-                  <div class="team_item"><a href="my_commissions0.html"><img src="{% static 'images/message_10308581.png' %}" loading="lazy" alt="의뢰 및 제안" class="team_image"><a href="my_commissions0.html"></a>
+                  <div class="team_item"><a href="{% url 'account:my_postings' %}"><img src="{% static 'images/message_10308581.png' %}" loading="lazy" alt="의뢰 및 제안" class="team_image"><a href="my_commissions0.html"></a>
                     <div class="text-color-blue">My Commissions</div>
                     <div class="padding-bottom padding-xxsmall"></div>
                     <h3 class="heading-style-h4">나의 의뢰</h3>
@@ -124,7 +137,7 @@
                     <div class="w-layout-grid team_socials">
                     </div>
                   </div>
-                  <div class="team_item"><a href="refund_pop.html"><img src="{% static 'images/money_5592170.png' %}" loading="lazy" alt="포인트 환급을 표현하는 지폐 이미지" class="team_image"></a>
+                  <div class="team_item"><a href="{% url 'account:refund_request' %}"><img src="{% static 'images/money_5592170.png' %}" loading="lazy" alt="포인트 환급을 표현하는 지폐 이미지" class="team_image"></a>
                     <div class="text-color-blue">Application for a Refund</div>
                     <div class="padding-bottom padding-xxsmall"></div>
                     <h3 class="heading-style-h4">환급 신청하기</h3>
@@ -173,7 +186,7 @@
                   <div class="footer_links-col">
                     <h4 class="footer_title">서비스</h4>
                     <div class="padding-bottom padding-xsmall"></div>
-                    <a href="product.html" class="footer_link">작업 의뢰하기</a>
+                    <a href="{% url 'posting:posting' %}" class="footer_link">작업 의뢰하기</a>
                     <a href="pricing.html" class="footer_link">작업 수행하기</a>
                   </div>
                   <div class="footer_links-col">
