@@ -230,7 +230,7 @@ margin: 0rem !important;
             <h1 class="heading-4">작업 리스트</h1>
           </div>
           {% for posting in postings %}
-            <div class="div-block">
+            <div class="post-item">
               <ul role="list" class="list w-list-unstyled">
                 <li class="list-item"><img src="{{ posting.images.first.image.url }}" loading="lazy" width="239" sizes="(max-width: 479px) 238.40000915527344px, (max-width: 767px) 50vw, 239px" srcset="{% static 'images/107707310-4689812420302980398-p-500.jpg' %} 500w, {% static 'images/107707310-4689812420302980398-p-800.jpg' %} 800w, {% static 'images/107707310-4689812420302980398.jpg' %} 1080w" alt="" class="image-2">
                   <div>
@@ -247,20 +247,23 @@ margin: 0rem !important;
                     </div>
                   </div>
                   {% if posting.remaining_count > 0 %}
-                    <a href="{% url 'account:posting_detail' pk=posting.pk %}" class="link-block w-inline-block">
+                    <a href="{% url 'account:posting_detail' pk=posting.pk %}" class="link-block w-inline-block btn btn-primary">
                       <h3 class="heading-5">D-{{posting.get_dday}}</h3>
                       <h4 class="heading-5">더보기</h4>
                     </a>
                   {% else %} 
-                    <a href="#" class="link-block work-complete w-inline-block" >
+                    <span class="link-block work-complete w-inline-block" >
                       <h3 class="heading-5">마감</h3>
-                    </a>
+                    </span>
                   {% endif %}
                 </li>
               </ul>
             </div>
           {% endfor %}    
-        </div>    
+        </div>
+      </header>
+    </main>    
+
     <footer class="footer_component">
       <div class="footer_cta_component">
         <div class="footer_cta_background"></div>

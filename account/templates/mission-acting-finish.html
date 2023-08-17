@@ -194,8 +194,9 @@ margin: 0rem !important;
   padding-right: 0rem !important;
   padding-left: 0rem !important;
 }
-</style>
+      </style>
     </div>
+    
     <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nav_component w-nav">
       <div class="padding-global">
         <div class="nav_container">
@@ -226,13 +227,11 @@ margin: 0rem !important;
           <h1 class="heading-4">{{posting.title}}</h1>
           <div class="requirements finish">
             <p class="paragraph-8 finish">현재 {{total_images}}장 완료!<br>예상 리워드는 <strong>{{total_reward}}원</strong>입니다.<br>종료하시겠습니까?</p>
-            <form method="post" action="{% url 'account:end' posting_id=posting_id image_index=image_index %}">
-              {% csrf_token %}
-              <div class="finish-btn">
-                <button type="submit" name="action" value="complete" class="button button-2 distance w-button">종료하기</button>
-              </div>
-            </form>
-            <div>
+            <div class="finish-btn">  
+              <form method="post" action="{% url 'account:end' posting_id=posting_id image_index=image_index %}">
+                {% csrf_token %}                
+                  <button type="submit" name="action" value="complete" class="button button-2 distance w-button">종료하기</button>                
+              </form>            
               <a href="{% url 'account:write_page_url' posting_id=posting_id image_index=image_index %}" class="button distance w-button">돌아가기</a>
             </div>
           </div>
