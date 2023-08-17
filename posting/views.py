@@ -54,4 +54,4 @@ def confirmation(request, posting_id, total_amount):
         price = int(request.POST.get('price', 0))
         total_amount = quantity * price
 
-    return render(request, 'popup.html', {'total_amount': total_amount})
+    return render(request, 'confirmation.html', {'total_amount': total_amount})

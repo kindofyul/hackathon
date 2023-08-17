@@ -234,10 +234,11 @@ margin: 0rem !important;
                 <p class="refund-paragraph">(환급 예정 계좌: {{ user_detail.bankaccount }})</p>
                 <div class="refund-btn-wrapper">
                   <input type="submit" class="button w-button" value="신청하기">
+                  <a href="{% url 'account:mypage_edit' %}" class="button w-button">계좌 수정하기</a>
+
                 </div>
               </form>
             </div>
-            <a href="{% url 'account:mypage_edit' %}" class="button button-2 w-button">계좌 수정하기</a>
           </div>
         </div>
       </header>
@@ -248,33 +249,10 @@ margin: 0rem !important;
         <div class="padding-global"></div>
       </div>
       <div class="footer_main-wrapper">
-        <div class="padding-global">
-          <div class="container-large">
-            <div class="padding-section-huge">
-              <div class="w-layout-grid footer_content">
-                <div class="footer_content-left">
-                  <a href="https://www.finsweet.com/" target="_blank" class="footer_logo-link w-inline-block"><img src="{% static 'images/로고_black.png' %}" loading="lazy" width="112" alt="" sizes="100vw" srcset="{% static 'images/로고_black-p-500.png' %} 500w, {% static 'images/로고_black-p-800.png' %} 800w, {% static 'images/로고_black.png' %} 1091w" class="footer_logo"></a>
-                </div>
-                <div class="w-layout-grid footer_content-right">
-                  <div class="footer_links-col">
-                    <h4 class="footer_title">서비스</h4>
-                    <div class="padding-bottom padding-xsmall"></div>
-                    <a href="{% url 'posting:posting' %}" class="footer_link">작업 의뢰하기</a>
-                    <a href="{% url 'account:explore' %}" class="footer_link">작업 수행하기</a>
-                  </div>
-                  <div class="footer_links-col">
-                    <h4 class="footer_title">함께하기</h4>
-                    <div class="padding-bottom padding-xsmall"></div>
-                    <a href="contact.html" class="footer_link">Contact Us</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
         <div class="footer_bottom">
           <div class="padding-global">
-            <div class="text-size-regular text-color-white">© Copyright </div>
+            <div class="text-size-regular text-color-white">© Copyright AltVision 2023</div>
           </div>
         </div>
       </div>
