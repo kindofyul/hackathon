@@ -228,23 +228,20 @@ margin: 0rem !important;
           </div>
           <div>
             <div class="w-form">
-              <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="64d209814b696181a70ce9c1" data-wf-element-id="094d3eb4-dfcc-f6fa-a1d5-a26485be3355"><img src="{{ image.image.url }}" loading="lazy" width="361" sizes="(max-width: 479px) 100vw, 361px"  alt="{{ image.description }}" class="image-3">
-                <div>
-                  <form method="post" action="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="image_id" value="{{ image.id }}">
-                    <textarea name="description" class="textarea w-input" maxlength="5000" name="field" data-name="Field" placeholder="설명을 입력하세요." id="field">{% if image.description %}{{ image.description }}{% endif %}</textarea>
-                    <button type="submit" name="save_button" class="button button-2 distance w-button btn btn-primary" value="save" {% if button_disabled %}disabled{% endif %}>저장하기</button>
-                  </form>
+              <form id="email-form" name="email-form" data-name="Email Form" method="post" action="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index %}" class="form" data-wf-page-id="64d209814b696181a70ce9c1" data-wf-element-id="094d3eb4-dfcc-f6fa-a1d5-a26485be3355"><img src="{{ image.image.url }}" loading="lazy" width="361" sizes="(max-width: 479px) 100vw, 361px"  alt="{{ image.description }}" class="image-3">                 
+                  {% csrf_token %}
+                  <input type="hidden" name="image_id" value="{{ image.id }}">
+                  <textarea name="description" class="textarea w-input" maxlength="5000" name="field" data-name="Field" placeholder="설명을 입력하세요." id="field">{% if image.description %}{{ image.description }}{% endif %}</textarea>
+                  <button type="submit" name="save_button" class="button button-2 distance w-button btn btn-primary" value="save" {% if button_disabled %}disabled{% endif %}>저장하기</button>
+              </form>    
 
-                  {% with num_images=listlength %}
-                    {% if image_index < num_images and image_index != num_images|add:"-1" %}
-                      <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="button distance w-button btn btn-secondary" name="next_button">넘어가기</a>
-                    {% endif %}
-                  {% endwith %}
-                  <a href="{% url 'account:end' posting_id=posting.pk image_index=image_index %}" name="end_button" class="button back-distance w-button">끝내기</a>             
-                </div>
-              </form>
+              {% with num_images=listlength %}
+                {% if image_index < num_images and image_index != num_images|add:"-1" %}
+                  <a href="{% url 'account:write_page_url' posting_id=posting.pk image_index=image_index|add:"1" %}" class="button distance w-button btn btn-secondary" name="next_button">넘어가기</a>
+                {% endif %}
+              {% endwith %}
+              <a href="{% url 'account:end' posting_id=posting.pk image_index=image_index %}" name="end_button" class="button back-distance w-button">끝내기</a>         
+              
             </div>  
             
             <div class="div-block-9">

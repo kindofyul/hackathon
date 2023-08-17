@@ -232,7 +232,7 @@ margin: 0rem !important;
           {% for posting in postings %}
             <div class="post-item">
               <ul role="list" class="list w-list-unstyled">
-                <li class="list-item"><img src="{{ posting.images.first.image.url }}" loading="lazy" width="239" sizes="(max-width: 479px) 238.40000915527344px, (max-width: 767px) 50vw, 239px" srcset="{% static 'images/107707310-4689812420302980398-p-500.jpg' %} 500w, {% static 'images/107707310-4689812420302980398-p-800.jpg' %} 800w, {% static 'images/107707310-4689812420302980398.jpg' %} 1080w" alt="" class="image-2">
+                <li class="list-item"><img src="{{ posting.images.first.image.url }}" loading="lazy" width="239" sizes="(max-width: 479px) 238.40000915527344px, (max-width: 767px) 50vw, 239px"  alt="" class="image-2 preview-image">
                   <div>
                     <h4 class="heading-6">{{posting.title}}</h4>
                     <div class="div-block-6">
@@ -252,7 +252,7 @@ margin: 0rem !important;
                       <h4 class="heading-5">더보기</h4>
                     </a>
                   {% else %} 
-                    <span class="link-block work-complete w-inline-block" >
+                    <span class="link-block work-complete w-inline-block closed-message" >
                       <h3 class="heading-5">마감</h3>
                     </span>
                   {% endif %}
