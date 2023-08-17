@@ -214,7 +214,7 @@ margin: 0rem !important;
               <a href="{% url 'account:home' %}" aria-current="page" class="nav_link w-nav-link w--current">홈</a>
               <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
               <a href="{% url 'account:explore' %}" class="nav_link w-nav-link">작업 수행하기</a>
-              <a href="contact.html" class="nav_link w-nav-link">Contact</a>
+              <a href="{% url 'account:contact' %}" class="nav_link w-nav-link">Contact</a>
             </div>
             <div class="nav_button-wrapper">
               <a href="{% url 'account:logout' %}" class="nav_button nav_button-1 w-button">로그아웃</a>
@@ -234,10 +234,10 @@ margin: 0rem !important;
           <a href="index.html" aria-current="page" class="nav_logo-link w-nav-brand w--current"><img src="{% static 'images/로고_black.png' %}" loading="lazy" width="134" sizes="(max-width: 479px) 46vw, (max-width: 767px) 134px, (max-width: 991px) 17vw, 11vw" srcset="{% static 'images/로고_black-p-500.png' %} 500w, {% static 'images/로고_black-p-800.png' %} 800w, {% static 'images/로고_black.png' %} 1091w" alt="" class="nav_logo"></a>
           <nav role="navigation" class="nav_menu-wrapper w-nav-menu">
             <div class="nav_link-wrapper">
-              <a href="index.html" aria-current="page" class="nav_link w-nav-link w--current">홈</a>
+              <a href="{% url 'account:home' %}" aria-current="page" class="nav_link w-nav-link w--current">홈</a>
               <a href="{% url 'account:commissionneedlogin' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
               <a href="{% url 'account:commissionneedlogin' %}" class="nav_link w-nav-link">작업 수행하기</a>
-              <a href="contact.html" class="nav_link w-nav-link">Contact</a>
+              <a href="{% url 'account:contact' %}" class="nav_link w-nav-link">Contact</a>
             </div>
             <div class="nav_button-wrapper">
               <a href="{% url 'account:login' %}" class="nav_button nav_button-1 w-button">로그인</a>
@@ -418,7 +418,7 @@ margin: 0rem !important;
                   <div class="footer_links-col">
                     <h4 class="footer_title">함께하기</h4>
                     <div class="padding-bottom padding-xsmall"></div>
-                    <a href="contact.html" class="footer_link">Contact Us</a>
+                    <a href="{% url 'account:contact' %}" class="footer_link">Contact Us</a>
                   </div>
                 </div>
               </div>
