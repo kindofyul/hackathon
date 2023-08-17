@@ -38,9 +38,9 @@
           <nav role="navigation" class="nav_menu-wrapper w-nav-menu">
             {% if user.is_authenticated %}
               <div class="nav_link-wrapper">
-                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'account:home' %}" class="nav_link w-nav-link">Home</a>
                 <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
-                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:explore' %}" class="nav_link w-nav-link">작업 수행하기</a>
                 <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
               </div>
               <div class="nav_button-wrapper">
@@ -49,9 +49,9 @@
               </div>
             {% else %}
               <div class="nav_link-wrapper">
-                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Home</a>
+                <a href="{% url 'account:home' %}" class="nav_link w-nav-link">Home</a>
                 <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
-                <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">작업 수행하기</a>
+                <a href="{% url 'account:explore' %}" class="nav_link w-nav-link">작업 수행하기</a>
                 <a href="{% url 'account:mypage_edit' %}" class="nav_link w-nav-link">Contact</a>
               </div>
               <div class="nav_button-wrapper">
