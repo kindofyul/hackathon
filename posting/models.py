@@ -14,9 +14,9 @@ from django.core.validators import MinValueValidator
 class Posting(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='postings', blank=True, null=True)
     title = models.CharField(max_length=30)
-    description = models.TextField(max_length=100)
+    description = models.TextField(max_length=1000)
     example_picture = models.ImageField(upload_to='example_pictures/', blank=True, null=True)
-    example_description = models.TextField(max_length=100, blank=True, null=True)
+    example_description = models.TextField(max_length=1000, blank=True, null=True)
     picture_zip = models.FileField(upload_to='picture_zips/', blank=True, null=True)
     quantity = models.PositiveIntegerField(blank=False)
     price = models.PositiveIntegerField(blank=False)

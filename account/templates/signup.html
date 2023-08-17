@@ -1,10 +1,29 @@
-<form action = "{% url 'account:signup' %}" method = "POST">
-    {% csrf_token %}
-    이름: <input type="text" name="legalname"> <br/>
-    번호: <input type="text" name="phone"> <br/>
-    주소: <input type="text" name="address"> <br/>
-    계좌: <input type="text" name="bankaccount"> <br/>
-    ID: <input type="text" name="username"> <br/>
-    PW: <input type="password" name="password"> <br/>
-    <input type="submit" value="회원가입">
-</form>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{% static 'css/forsignup.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'images/로고.png' %}" alt="Sign Up Icon" class="signup-icon">
+        <h2>
+            <span>회원가입</span>
+        </h2>
+        <form action="{% url 'account:signup' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="legalname" placeholder="이름"><br>
+            <input type="text" name="phone" placeholder="번호"><br>
+            <input type="textarea" name="address" placeholder="주소" cols="20" rows="8"><br>
+            <input type="text" name="bankaccount" placeholder="계좌"><br>
+            <input type="text" name="username" placeholder="아이디"><br>
+            <input type="password" name="password" placeholder="비밀번호"><br>
+            <input type="submit" value="회원가입">
+        </form>
+    </div>
+</body>
+</html>
