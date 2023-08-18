@@ -5,8 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signIn</title>
+    <title>SignIn</title>
+    <link href="{% static 'images/AltVision_Tablogo.png' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'images/AltVision_Tablogo.webp' %}" rel="apple-touch-icon"><!--  This code improves text appearance (thickness) on a published project  -->  
     <link rel="stylesheet" href="{% static 'css/forlogin.css' %}">
+    <style>
+        button {
+            background-color: #4d65ffc9;
+            color: white;
+            border-radius: 15px;
+            padding: 15px 30px;
+            border: none;
+            margin-top: 25%;
+        }
+
+        button:hover {
+            background-color: #4d65ff;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,6 +30,7 @@
         <h2>
             <span>로그인이 필요합니다.</span>
         </h2>
+        <a href="{% url 'account:home' %}"><button>홈으로</button></a>
     </div>
 </body>
 </html>
