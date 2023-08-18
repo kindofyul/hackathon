@@ -5,5 +5,6 @@ from .models import *
 
 admin.site.register(UserDetail)
 admin.site.register(Notification)
+admin.site.register(AltTextInfo)
 
 

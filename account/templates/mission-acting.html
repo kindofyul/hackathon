@@ -208,7 +208,7 @@ margin: 0rem !important;
               <a href="{% url 'account:home' %}" class="nav_link w-nav-link">홈</a>
               <a href="{% url 'posting:posting' %}" class="nav_link w-nav-link">작업 의뢰하기</a>
               <a href="{% url 'account:explore' %}" aria-current="page" class="nav_link w-nav-link w--current">작업 수행하기</a>
-              <a href="contact.html" class="nav_link w-nav-link">Contact</a>
+              <a href="{% url 'account:alt_text_generator' %}" class="nav_link w-nav-link">대체 텍스트 입력하기</a>
             </div>
             <div class="nav_button-wrapper">
               <a href="{% url 'account:logout' %}" class="nav_button nav_button-1 w-button">로그아웃</a>

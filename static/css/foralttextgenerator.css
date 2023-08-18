@@ -1,0 +1,79 @@
+/* main.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    padding: 0;
+    background-color: #605dc26e;
+    /* background: linear-gradient(45deg, #d2d1f2d2, #ff005128, #d2d1f2d2, #ff005128); */
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #4d65ffea;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button[id="copy-button"] {
+    background-color: #4d65ffea;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#copy-message {
+    text-align: center;
+    margin-top: 20px; /* 복사 버튼 아래 여백 추가 */
+}
+

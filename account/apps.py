@@ -7,3 +7,7 @@ class AccountConfig(AppConfig):
 
     def ready(self):
         import account.signals
+
+class AlttextConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'alttext'

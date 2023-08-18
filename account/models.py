@@ -24,3 +24,7 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.message}"
+    
+
+class AltTextInfo(models.Model):
+    excel_file = models.FileField(upload_to='uploads/')
